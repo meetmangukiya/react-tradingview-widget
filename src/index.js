@@ -187,7 +187,7 @@ export default class TradingViewWidget extends PureComponent {
     /* global TradingView */
     if (typeof TradingView === 'undefined' || !document.getElementById(this.containerId)) return;
 
-    const { widgetType, ...widgetConfig } = this.props;
+    const { widgetType, onQuote, ...widgetConfig } = this.props;
     const config = { ...widgetConfig, container_id: this.containerId };
 
     if (config.autosize) {
@@ -208,7 +208,8 @@ export default class TradingViewWidget extends PureComponent {
     }
 
     /* global TradingView */
-    new TradingView[widgetType](config);
+    _tv = new TradingView[widgetType](config);
+    _tv.subscribeToQuote(onQuote);
   };
 
   cleanWidget = () => {

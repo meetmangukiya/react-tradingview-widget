@@ -208,7 +208,7 @@ export default class TradingViewWidget extends PureComponent {
     }
 
     /* global TradingView */
-    _tv = new TradingView[widgetType](config);
+    const _tv = new TradingView[widgetType](config);
     _tv.subscribeToQuote(onQuote);
   };
 
